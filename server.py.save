@@ -1,0 +1,20 @@
+"""
+Streamable HTTP MCP server for weather reports via Open-Meteo (no API key required).
+Run with: python server.py [--host HOST] [--port PORT]
+"""
+
+import argparse
+from typing import Any
+
+import httpx
+from mcp.server.fastmcp import FastMCP
+
+OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
+
+WMO_CODES: dict[int, str] = {
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48
